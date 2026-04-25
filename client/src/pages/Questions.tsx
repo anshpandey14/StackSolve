@@ -8,7 +8,7 @@ import { Input } from "../components/ui/input";
 import { IconSearch } from "@tabler/icons-react";
 import type { Question } from "../types";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Questions = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,7 +33,7 @@ const Questions = () => {
   useEffect(() => {
     async function fetchTags() {
       try {
-        const res = await fetch(`${API_URL}/questions/tags`);
+        const res = await fetch(`${API_URL}/api/questions/tags`);
         const data = await res.json();
         if (data.success) setAllTags(data.data);
       } catch (err) {
@@ -47,7 +47,7 @@ const Questions = () => {
     async function fetchQuestions() {
       setLoading(true);
       try {
-        let url = `${API_URL}/questions?`;
+        let url = `${API_URL}/api/questions?`;
         if (tag) url += `tag=${tag}&`;
         if (searchQuery) url += `search=${searchQuery}&`;
         

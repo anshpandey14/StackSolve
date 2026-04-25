@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { IconTrash } from "@tabler/icons-react";
 import type { Answer } from "@/types";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Answers = ({
   answers: _answers,
@@ -33,7 +33,7 @@ const Answers = ({
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_URL}/questions/${questionId}/answers`, {
+      const response = await fetch(`${API_URL}/api/questions/${questionId}/answers`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const Answers = ({
   const deleteAnswer = async (answerId: string) => {
     if (!window.confirm("Are you sure?")) return;
     try {
-      const response = await fetch(`${API_URL}/answers/${answerId}`, {
+      const response = await fetch(`${API_URL}/api/answers/${answerId}`, {
         method: "DELETE",
         headers: {
             Authorization: `Bearer ${jwt}`,

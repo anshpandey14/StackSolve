@@ -5,7 +5,7 @@ import QuestionForm from "../components/QuestionForm";
 import { Particles } from "../components/ui/particles";
 import type { Question } from "../types";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AskQuestion() {
   const { user } = useAuthStore();
@@ -26,7 +26,7 @@ export default function AskQuestion() {
     if (!isEditing) return;
     async function fetchQuestion() {
       try {
-        const res = await fetch(`${API_URL}/questions/${quesId}`);
+        const res = await fetch(`${API_URL}/api/questions/${quesId}`);
         const data = await res.json();
         if (data.success) setQuestion(data.data);
       } catch (err) {

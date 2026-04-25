@@ -17,7 +17,7 @@ interface IAuthStore {
   logout(): void;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const useAuthStore = create<IAuthStore>()(
   persist(
@@ -32,7 +32,7 @@ export const useAuthStore = create<IAuthStore>()(
 
       async login(email: string, password: string) {
         try {
-          const response = await fetch(`${API_URL}/auth/login`, {
+          const response = await fetch(`${API_URL}/api/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
@@ -53,7 +53,7 @@ export const useAuthStore = create<IAuthStore>()(
 
       async createAccount(name: string, email: string, password: string) {
         try {
-          const response = await fetch(`${API_URL}/auth/register`, {
+          const response = await fetch(`${API_URL}/api/auth/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, password }),
@@ -82,7 +82,7 @@ export const useAuthStore = create<IAuthStore>()(
           const firebaseUser = result.user;
 
           // Sync with our backend
-          const response = await fetch(`${API_URL}/auth/social-login`, {
+          const response = await fetch(`${API_URL}/api/auth/social-login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

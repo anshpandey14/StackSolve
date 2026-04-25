@@ -31,7 +31,7 @@ const LabelInputContainer = ({
   );
 };
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const QuestionForm = ({ question }: { question?: Question }) => {
   const { jwt } = useAuthStore();
@@ -97,8 +97,8 @@ const QuestionForm = ({ question }: { question?: Question }) => {
 
     try {
       const url = question
-        ? `${API_URL}/questions/${question._id}`
-        : `${API_URL}/questions`;
+        ? `${API_URL}/api/questions/${question._id}`
+        : `${API_URL}/api/questions`;
       const method = question ? "PATCH" : "POST";
 
       const response = await fetch(url, {

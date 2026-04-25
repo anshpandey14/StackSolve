@@ -12,7 +12,7 @@ import { useAuthStore } from "../store/auth";
 import type { Question, Answer, Comment } from "../types";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const QuestionDetail = () => {
   const { quesId } = useParams();
@@ -26,7 +26,7 @@ const QuestionDetail = () => {
     async function fetchAll() {
       try {
         // Fetch question with answers
-        const res = await fetch(`${API_URL}/questions/${quesId}`);
+        const res = await fetch(`${API_URL}/api/questions/${quesId}`);
         const data = await res.json();
         if (data.success) {
           setQuestion(data.data);
@@ -35,7 +35,7 @@ const QuestionDetail = () => {
 
         // Fetch comments for the question
         const cRes = await fetch(
-          `${API_URL}/comments?type=question&typeId=${quesId}`,
+          `${API_URL}/api/comments?type=question&typeId=${quesId}`,
         );
         const cData = await cRes.json();
         if (cData.success) setComments(cData.data);
@@ -54,7 +54,7 @@ const QuestionDetail = () => {
     if (!window.confirm("Are you sure you want to delete this question?")) return;
 
     try {
-      const res = await fetch(`${API_URL}/questions/${quesId}`, {
+      const res = await fetch(`${API_URL}/api/questions/${quesId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${jwt}`,

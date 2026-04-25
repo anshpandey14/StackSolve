@@ -4,7 +4,7 @@ import { IconCaretUpFilled, IconCaretDownFilled } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const VoteButtons = ({
   type,
@@ -33,7 +33,7 @@ const VoteButtons = ({
     }
 
     try {
-      const response = await fetch(`${API_URL}/votes`, {
+      const response = await fetch(`${API_URL}/api/votes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

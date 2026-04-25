@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 import { Input } from "../components/ui/input";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Tags() {
   const [tags, setTags] = useState<string[]>([]);
@@ -13,7 +13,7 @@ export default function Tags() {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await fetch(`${API_URL}/questions/tags`);
+        const response = await fetch(`${API_URL}/api/questions/tags`);
         const data = await response.json();
         if (data.success) {
           setTags(data.data);

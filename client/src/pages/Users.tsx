@@ -6,7 +6,7 @@ import { Input } from "../components/ui/input";
 import { IconSearch } from "@tabler/icons-react";
 import type { User } from "@/types";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -18,7 +18,7 @@ export default function Users() {
     async function fetchUsers() {
       setLoading(true);
       try {
-        const res = await fetch(`${API_URL}/users?search=${searchQuery}`);
+        const res = await fetch(`${API_URL}/api/users?search=${searchQuery}`);
         const data = await res.json();
         if (data.success) {
           setUsers(data.data);

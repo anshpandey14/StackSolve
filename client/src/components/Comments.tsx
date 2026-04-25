@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import type { Comment } from "@/types";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Comments = ({
   comments: _comments,
@@ -36,7 +36,7 @@ const Comments = ({
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_URL}/comments`, {
+      const response = await fetch(`${API_URL}/api/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Comments = ({
   const deleteComment = async (commentId: string) => {
     if(!window.confirm("Delete comment?")) return;
     try {
-      await fetch(`${API_URL}/comments/${commentId}`, {
+      await fetch(`${API_URL}/api/comments/${commentId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${jwt}` },
       });

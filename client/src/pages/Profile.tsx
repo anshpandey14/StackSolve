@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import type { User } from "../types";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
   const { userId } = useParams();
@@ -24,7 +24,7 @@ const Profile = () => {
 
     async function fetchUser() {
       try {
-        const res = await fetch(`${API_URL}/users/${userId}`, {
+        const res = await fetch(`${API_URL}/api/users/${userId}`, {
           headers: jwt ? { Authorization: `Bearer ${jwt}` } : {},
         });
         const data = await res.json();
