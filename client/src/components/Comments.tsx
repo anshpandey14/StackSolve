@@ -36,7 +36,7 @@ const Comments = ({
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_URL}/api/comments`, {
+      const response = await fetch(`${API_URL}/api/v1/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Comments = ({
   const deleteComment = async (commentId: string) => {
     if(!window.confirm("Delete comment?")) return;
     try {
-      await fetch(`${API_URL}/api/comments/${commentId}`, {
+      await fetch(`${API_URL}/api/v1/comments/${commentId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${jwt}` },
       });

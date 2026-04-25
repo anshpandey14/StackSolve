@@ -2,7 +2,11 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import type { User } from "@/types";
-import { auth as firebaseAuth, googleProvider, githubProvider } from "@/lib/firebase";
+import {
+  auth as firebaseAuth,
+  googleProvider,
+  githubProvider,
+} from "@/lib/firebase";
 import { signInWithPopup } from "firebase/auth";
 
 interface IAuthStore {
@@ -11,8 +15,15 @@ interface IAuthStore {
   hydrated: boolean;
 
   setHydrated(): void;
-  login(email: string, password: string): Promise<{ success: boolean; error?: string }>;
-  createAccount(name: string, email: string, password: string): Promise<{ success: boolean; error?: string; message?: string }>;
+  login(
+    email: string,
+    password: string,
+  ): Promise<{ success: boolean; error?: string }>;
+  createAccount(
+    name: string,
+    email: string,
+    password: string,
+  ): Promise<{ success: boolean; error?: string; message?: string }>;
   socialLogin(provider: string): Promise<{ success: boolean; error?: string }>;
   logout(): void;
 }
@@ -32,7 +43,7 @@ export const useAuthStore = create<IAuthStore>()(
 
       async login(email: string, password: string) {
         try {
-          const response = await fetch(`${API_URL}/api/auth/login`, {
+          const response = await fetch(`${API_URL}/api/v1/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
@@ -53,7 +64,7 @@ export const useAuthStore = create<IAuthStore>()(
 
       async createAccount(name: string, email: string, password: string) {
         try {
-          const response = await fetch(`${API_URL}/api/auth/register`, {
+          const response = await fetch(`${API_URL}/api/v1/auth/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, password }),
@@ -77,18 +88,19 @@ export const useAuthStore = create<IAuthStore>()(
 
       async socialLogin(providerName: string) {
         try {
-          const provider = providerName === "Google" ? googleProvider : githubProvider;
+          const provider =
+            providerName === "Google" ? googleProvider : githubProvider;
           const result = await signInWithPopup(firebaseAuth, provider);
           const firebaseUser = result.user;
 
           // Sync with our backend
-          const response = await fetch(`${API_URL}/api/auth/social-login`, {
+          const response = await fetch(`${API_URL}/api/v1/auth/social-login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               name: firebaseUser.displayName,
               email: firebaseUser.email,
-              avatar: firebaseUser.photoURL
+              avatar: firebaseUser.photoURL,
             }),
           });
 
@@ -104,7 +116,7 @@ export const useAuthStore = create<IAuthStore>()(
           console.error("Social login error:", error);
           return { success: false, error: error.message };
         }
-      }
+      },
     })),
     {
       name: "stackoverflow-auth",
@@ -113,9 +125,6 @@ export const useAuthStore = create<IAuthStore>()(
           state?.setHydrated();
         };
       },
-    }
-  )
+    },
+  ),
 );
-
-
-

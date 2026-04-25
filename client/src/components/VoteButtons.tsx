@@ -33,7 +33,7 @@ const VoteButtons = ({
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/votes`, {
+      const response = await fetch(`${API_URL}/api/v1/votes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

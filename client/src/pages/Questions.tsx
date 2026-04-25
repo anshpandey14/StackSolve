@@ -33,7 +33,7 @@ const Questions = () => {
   useEffect(() => {
     async function fetchTags() {
       try {
-        const res = await fetch(`${API_URL}/api/questions/tags`);
+        const res = await fetch(`${API_URL}/api/v1/questions/tags`);
         const data = await res.json();
         if (data.success) setAllTags(data.data);
       } catch (err) {
@@ -47,7 +47,7 @@ const Questions = () => {
     async function fetchQuestions() {
       setLoading(true);
       try {
-        let url = `${API_URL}/api/questions?`;
+        let url = `${API_URL}/api/v1/questions?`;
         if (tag) url += `tag=${tag}&`;
         if (searchQuery) url += `search=${searchQuery}&`;
         

@@ -24,7 +24,7 @@ const Profile = () => {
 
     async function fetchUser() {
       try {
-        const res = await fetch(`${API_URL}/api/users/${userId}`, {
+        const res = await fetch(`${API_URL}/api/v1/users/${userId}`, {
           headers: jwt ? { Authorization: `Bearer ${jwt}` } : {},
         });
         const data = await res.json();

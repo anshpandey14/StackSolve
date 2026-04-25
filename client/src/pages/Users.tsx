@@ -18,7 +18,7 @@ export default function Users() {
     async function fetchUsers() {
       setLoading(true);
       try {
-        const res = await fetch(`${API_URL}/api/users?search=${searchQuery}`);
+        const res = await fetch(`${API_URL}/api/v1/users?search=${searchQuery}`);
         const data = await res.json();
         if (data.success) {
           setUsers(data.data);

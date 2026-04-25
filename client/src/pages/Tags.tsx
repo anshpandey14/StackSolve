@@ -13,7 +13,7 @@ export default function Tags() {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/questions/tags`);
+        const response = await fetch(`${API_URL}/api/v1/questions/tags`);
         const data = await response.json();
         if (data.success) {
           setTags(data.data);

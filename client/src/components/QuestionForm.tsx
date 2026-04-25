@@ -97,8 +97,8 @@ const QuestionForm = ({ question }: { question?: Question }) => {
 
     try {
       const url = question
-        ? `${API_URL}/api/questions/${question._id}`
-        : `${API_URL}/api/questions`;
+        ? `${API_URL}/api/v1/questions/${question._id}`
+        : `${API_URL}/api/v1/questions`;
       const method = question ? "PATCH" : "POST";
 
       const response = await fetch(url, {

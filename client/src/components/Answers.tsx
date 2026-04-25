@@ -33,7 +33,7 @@ const Answers = ({
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_URL}/api/questions/${questionId}/answers`, {
+      const response = await fetch(`${API_URL}/api/v1/questions/${questionId}/answers`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -61,10 +61,10 @@ const Answers = ({
   const deleteAnswer = async (answerId: string) => {
     if (!window.confirm("Are you sure?")) return;
     try {
-      const response = await fetch(`${API_URL}/api/answers/${answerId}`, {
+      const response = await fetch(`${API_URL}/api/v1/answers/${answerId}`, {
         method: "DELETE",
         headers: {
-            Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${jwt}`,
         },
       });
 
