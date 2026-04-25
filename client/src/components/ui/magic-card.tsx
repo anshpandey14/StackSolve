@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 import {
-  CSSProperties,
-  ReactElement,
-  ReactNode,
+  type CSSProperties,
+  type ReactElement,
+  type ReactNode,
   useEffect,
   useRef,
   useState,
@@ -205,7 +205,7 @@ const MagicCard: React.FC<MagicCardProps> = ({
       {/* Background */}
       <div
         className={
-          "absolute inset-[1px] -z-20 rounded-2xl bg-white dark:bg-black/95"
+          "absolute inset-px -z-20 rounded-2xl bg-white dark:bg-black/95"
         }
       />
     </div>

@@ -3,7 +3,7 @@ import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { cn } from "../lib/utils";
 import { useAuthStore } from "../store/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BottomGradient = () => (
   <>
@@ -29,7 +29,6 @@ export default function Register() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const [successMsg, setSuccessMsg] = React.useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,7 +51,10 @@ export default function Register() {
       password.toString(),
     );
     if (res.success) {
-      setSuccessMsg(res.message || "Account created! Please check your email to verify your account.");
+      setSuccessMsg(
+        res.message ||
+          "Account created! Please check your email to verify your account.",
+      );
     } else {
       setError(res.error || "Registration failed");
     }
@@ -79,9 +81,14 @@ export default function Register() {
 
         {successMsg ? (
           <div className="my-8 rounded-lg bg-green-500/10 p-6 text-center border border-green-500/20">
-            <h3 className="text-xl font-semibold text-green-500 mb-2">Check your email</h3>
+            <h3 className="text-xl font-semibold text-green-500 mb-2">
+              Check your email
+            </h3>
             <p className="text-sm text-neutral-300 mb-6">{successMsg}</p>
-            <Link to="/login" className="inline-flex h-10 items-center justify-center rounded-md bg-neutral-800 px-4 font-medium text-white shadow-sm hover:bg-neutral-700">
+            <Link
+              to="/login"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-neutral-800 px-4 font-medium text-white shadow-sm hover:bg-neutral-700"
+            >
               Go to Login
             </Link>
           </div>
