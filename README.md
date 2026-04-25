@@ -1,12 +1,12 @@
-# 🚀 Stack Solve — Premium Developer Community
+# 🚀 Stack Solve 
 
-A state-of-the-art developer community platform built with the **MERN Stack** (**MongoDB**, **Express**, **React**, **Node.js**). **Stack Solve** is a rebranded, high-performance evolution of a classic Q&A forum, featuring real-time search, a cinematic UI, secure social authentication, and robust edge-case handling.
+A state-of-the-art developer community platform built with the **MERN Stack** (**MongoDB**, **Express**, **React**, **Node.js**). **Stack Solve** is a high-performance evolution of a classic Q&A forum, featuring real-time search, a cinematic UI, secure social authentication.
 
 ---
 
 ## ✨ Key Features
 
-- **Rebranded Experience** — Completely evolved from standard templates to the premium **Stack Solve** brand.
+<!-- - **Rebranded Experience** — Completely evolved from standard templates to the premium **Stack Solve** brand. -->
 - **Cinematic Dark UI** — Built with React 19, Tailwind CSS v4, Framer Motion, and Magic UI for a premium, interactive feel.
 - **Real Social Login** — Securely sign in using **Google** or **GitHub** via Firebase Authentication.
 - **Production-Ready Auth Security** — Required email verification via Nodemailer, brute-force protection with rate-limiting, and strict input validation via `express-validator`.
